@@ -21,6 +21,10 @@ const appRouter = () =>
       path: AppRoutes.LOGIN,
       element: RouteComponents[AppRoutes.LOGIN],
     },
+    {
+      path: AppRoutes.REGISTRATION,
+      element: RouteComponents[AppRoutes.REGISTRATION],
+    },
   ]);
 
 export { appRouter };
