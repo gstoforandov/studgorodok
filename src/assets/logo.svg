@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 300" width="600" height="300">
+  <rect width="600" height="300" fill="white" stroke="#0d47a1" stroke-width="4" rx="20"/>
+  <g opacity="0.1">
+    <path d="M300 50 L500 130 L300 210 L100 130 Z" fill="#0d47a1"/>
+    <rect x="290" y="210" width="20" height="50" fill="#0d47a1"/>
+  </g>
+  <text x="50%" y="65%" dominant-baseline="middle" text-anchor="middle" font-size="48" font-family="Arial, sans-serif" fill="#0d47a1" font-weight="bold">
+    СтудГородок ЮФУ
+  </text>
+</svg>

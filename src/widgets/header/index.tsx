@@ -11,15 +11,29 @@ import {
   Tooltip,
   Avatar,
 } from "@mui/material";
+import { Link } from "react-router";
 import MenuIcon from "@mui/icons-material/Menu";
-import React from "react";
+import React, { useMemo } from "react";
 import AdbIcon from "@mui/icons-material/Adb";
 import { Outlet } from "react-router";
-
-const pages = ["Products", "Pricing", "Blog"];
+import { AppRoutes } from "../../shared/lib/router";
+import logo from "../../assets/studgorodok_logo.png";
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 export const Header = () => {
+  const pages = useMemo(
+    () => [
+      {
+        label: "Новости",
+        to: AppRoutes.NEWS,
+      },
+      {
+        label: "Расписание",
+        to: AppRoutes.SCHEDULE,
+      },
+    ],
+    []
+  );
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
@@ -47,7 +61,6 @@ export const Header = () => {
       <AppBar position="static">
         <Container maxWidth="xl">
           <Toolbar disableGutters>
-            <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
             <Typography
               variant="h6"
               noWrap
@@ -63,7 +76,7 @@ export const Header = () => {
                 textDecoration: "none",
               }}
             >
-              LOGO
+              СтудГородок ЮФУ
             </Typography>
 
             <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -94,13 +107,12 @@ export const Header = () => {
                 sx={{ display: { xs: "block", md: "none" } }}
               >
                 {pages.map((page) => (
-                  <MenuItem key={page} onClick={handleCloseNavMenu}>
-                    <Typography sx={{ textAlign: "center" }}>{page}</Typography>
+                  <MenuItem key={page.label} onClick={handleCloseNavMenu}>
+                    <Link to={page.to}>{page.label}</Link>
                   </MenuItem>
                 ))}
               </Menu>
             </Box>
-            <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
             <Typography
               variant="h5"
               noWrap
@@ -117,16 +129,18 @@ export const Header = () => {
                 textDecoration: "none",
               }}
             >
-              LOGO
+              СтудГородок ЮФУ
             </Typography>
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
               {pages.map((page) => (
                 <Button
-                  key={page}
+                  key={page.label}
+                  component={Link}
+                  to={page.to}
                   onClick={handleCloseNavMenu}
                   sx={{ my: 2, color: "white", display: "block" }}
                 >
-                  {page}
+                  {page.label}
                 </Button>
               ))}
             </Box>
