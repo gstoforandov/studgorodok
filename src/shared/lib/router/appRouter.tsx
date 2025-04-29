@@ -15,6 +15,10 @@ const appRouter = () =>
           path: AppRoutes.SCHEDULE,
           element: RouteComponents[AppRoutes.SCHEDULE],
         },
+        {
+          path: AppRoutes.CANTEEN,
+          element: RouteComponents[AppRoutes.CANTEEN],
+        },
       ],
     },
     {

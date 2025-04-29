@@ -14,10 +14,8 @@ import {
 import { Link } from "react-router";
 import MenuIcon from "@mui/icons-material/Menu";
 import React, { useMemo } from "react";
-import AdbIcon from "@mui/icons-material/Adb";
 import { Outlet } from "react-router";
 import { AppRoutes } from "../../shared/lib/router";
-import logo from "../../assets/studgorodok_logo.png";
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 export const Header = () => {
@@ -30,6 +28,10 @@ export const Header = () => {
       {
         label: "Расписание",
         to: AppRoutes.SCHEDULE,
+      },
+      {
+        label: "Меню столовой",
+        to: AppRoutes.CANTEEN,
       },
     ],
     []
