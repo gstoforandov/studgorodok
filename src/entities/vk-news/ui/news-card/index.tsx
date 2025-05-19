@@ -28,8 +28,7 @@ export const NewsCard = (props: any) => {
 
   function renderCardMedia() {
     if (!props.attachments) return null;
-    const { photo } = props.attachments[0];
-    if (!photo)
+    if(!props.attachments[0]?.photo) {
       return (
         <CardMedia
           component="img"
@@ -40,6 +39,8 @@ export const NewsCard = (props: any) => {
           sx={{ objectFit: "cover" }}
         />
       );
+    }
+    const { photo } = props.attachments[0];
     const { sizes } = photo;
     const rightSize = sizes.find((el) => el.type === "r");
 

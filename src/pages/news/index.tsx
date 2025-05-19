@@ -45,6 +45,20 @@ export const News = () => {
   };
 
   if (isLoading) return <CircularProgress sx={{ margin: "auto" }} />;
+  if (!data) {
+    return (
+      <div className={style.center}>
+        <div className={style.container}>
+          <Typography variant="h5" color="error" sx={{ mb: 2 }}>
+            Для просмотра новостей необходимо авторизоваться через VK.
+          </Typography>
+          <Typography variant="body1">
+            Пожалуйста, войдите в свой аккаунт VK, чтобы получить доступ к актуальным новостям.
+          </Typography>
+        </div>
+      </div>
+    );
+  }
   const {
     response: { items, count },
   } = data;

@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const vkSlice = createApi({
   reducerPath: 'vk',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:3001',
+    baseUrl: 'http://localhost:3004',
   }),
   endpoints: (builder) => ({
     getWalls: builder.query({

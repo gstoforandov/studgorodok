@@ -13,7 +13,7 @@ interface DailyMenu {
 }
 export const canteenSlice = createApi({
   reducerPath: 'canteenSlice',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3001/canteen' }),
+  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3004/canteen' }),
   endpoints: (builder) => ({
     getWeekDays: builder.query<string[], void>({
       query: () => ('/week'),

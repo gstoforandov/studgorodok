@@ -18,16 +18,16 @@ import {
 } from "@mui/material";
 
 const ScheduleTable = ({ scheduleData, handleSelectWeek }) => {
-  const [selectedWeek, setSelectedWeek] = useState(scheduleData.table.week);
-
-  useEffect(() => {
-    return () => handleSelectWeek(null);
-  }, []);
   if (!scheduleData || !scheduleData.table) {
     return (
       <Typography variant="body1">Данные расписания не загружены</Typography>
     );
   }
+  const [selectedWeek, setSelectedWeek] = useState(scheduleData.table.week);
+
+  useEffect(() => {
+    return () => handleSelectWeek(null);
+  }, []);
 
   const { table, weeks } = scheduleData;
   const [pairsHeader, timeHeader, ...daysData] = table.table;

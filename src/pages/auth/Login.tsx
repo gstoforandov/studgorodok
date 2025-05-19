@@ -38,7 +38,7 @@ const validationSchema: yup.ObjectSchema<FormValues> = yup.object().shape({
     .required("Электронная почта обязательно"),
   password: yup
     .string()
-    .min(6, "Минимум 6 символов")
+    .min(8, "Минимум 8 символов")
     .required("Пароль должен быть введен"),
 });
 export const Login = () => {
@@ -47,9 +47,7 @@ export const Login = () => {
 
   const handleSubmit = async (data: FormValues) => {
     authLogin(data);
-    navigate({
-      search: AppRoutes.ROOT,
-    });
+    navigate(AppRoutes.NEWS);
   };
   return (
     <div className={style.container}>

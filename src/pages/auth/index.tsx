@@ -44,14 +44,14 @@ const fields: FieldsConfig[] = [
 // name, surname,
 const validationSchema: yup.ObjectSchema<FormValues> = yup.object().shape({
   name: yup.string().required("Имя обязательно"),
-  surname: yup.string().required("Фамилия обязательна"),
+  surname: yup.string().required("Отчество обязательно"),
   email: yup
     .string()
     .email("Некорректный адрес электронной почты")
     .required("Электронная почта обязательно"),
   password: yup
     .string()
-    .min(6, "Минимум 6 символов")
+    .min(8, "Минимум 8 символов")
     .required("Пароль должен быть введен"),
 });
 
@@ -61,10 +61,8 @@ export const Auth = () => {
 
   const handleSubmit = async (data: FormValues) => {
     const { token }: { token: string } = await authRegistration(data).unwrap();
-    localStorage.set("token", token);
-    navigate({
-      search: AppRoutes.ROOT,
-    });
+    localStorage.setItem("token", token);
+    navigate(AppRoutes.NEWS);
   };
   return (
     <div className={style.container}>
