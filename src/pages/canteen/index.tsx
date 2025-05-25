@@ -58,7 +58,6 @@ const CanteenMenu = () => {
         </Tabs>
       )}
 
-      {/* Остальной код без изменений */}
       {menuError && (
         <Alert severity="error" sx={{ mb: 2 }}>
           Ошибка загрузки меню

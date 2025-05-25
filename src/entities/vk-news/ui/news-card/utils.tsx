@@ -1,5 +1,4 @@
 import { Typography, Box } from "@mui/material";
-import { Link } from "react-router";
 interface PostTextProps {
   text?: string;
   isLimited?: boolean;
@@ -10,7 +9,6 @@ export const PostText: React.FC<PostTextProps> = ({
 }) => {
   if (!text) return null;
 
-  // Функция для обработки VK-разметки [id123|Name] или [club123|Name]
   const parseVkMentions = (text: string) => {
     return text.replace(
       /\[(id\d+|club\d+)\|([^\]]+)\]/g,
@@ -25,27 +23,25 @@ export const PostText: React.FC<PostTextProps> = ({
     );
 
     return parts.map((part, i) => {
-      // Обработка markdown-подобных ссылок [text](url)
       const mdLinkMatch = part.match(/^\[(.*?)\]\((https?:\/\/[^\s)]+)\)$/);
       if (mdLinkMatch) {
         return (
-          <Link
+          <a
             key={i}
             href={mdLinkMatch[2]}
             target="_blank"
             rel="noopener noreferrer"
           >
             {mdLinkMatch[1]}
-          </Link>
+          </a>
         );
       }
 
-      // Обработка простых URL
       if (part.match(/^https?:\/\//)) {
         return (
-          <Link key={i} href={part} target="_blank" rel="noopener noreferrer">
+          <a key={i} href={part} target="_blank" rel="noopener noreferrer">
             {part}
-          </Link>
+          </a>
         );
       }
 
@@ -55,10 +51,8 @@ export const PostText: React.FC<PostTextProps> = ({
 
   // Основная функция рендеринга текста
   const renderFormattedText = () => {
-    // Сначала обрабатываем VK-разметку
     const withVkLinks = parseVkMentions(text);
 
-    // Разбиваем на параграфы по переносам строк
     return withVkLinks.split("\n").map((paragraph, index) => (
       <Typography
         key={index}

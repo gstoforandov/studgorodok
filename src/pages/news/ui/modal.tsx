@@ -1,6 +1,25 @@
 import { Typography, Box, IconButton, Divider, CardMedia } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { PostText } from "../../../entities/vk-news/ui/news-card/utils";
+
+interface AttachmentSize {
+  type: string;
+  url: string;
+}
+
+interface Photo {
+  sizes: AttachmentSize[];
+}
+
+interface Attachment {
+  photo?: Photo;
+}
+
+export interface NewsItem {
+  text?: string;
+  attachments?: Attachment[];
+}
+
 const modalStyle = {
   position: "absolute",
   top: "50%",
@@ -15,8 +34,14 @@ const modalStyle = {
   p: 3,
   overflowY: "auto",
 };
-export const NewsModal = ({ handleCloseModal, selectedNews }) => {
-  console.log(selectedNews.text);
+export const NewsModal = ({
+  handleCloseModal,
+  selectedNews,
+}: {
+  handleCloseModal: () => void;
+  selectedNews: NewsItem | null;
+}) => {
+  console.log(selectedNews?.text);
   return (
     <Box sx={modalStyle}>
       <IconButton
@@ -35,7 +60,7 @@ export const NewsModal = ({ handleCloseModal, selectedNews }) => {
           <Divider sx={{ my: 2 }} />
 
           <PostText text={selectedNews.text} isLimited={false} />
-          {selectedNews.attachments?.length > 0 && (
+          {selectedNews.attachments && selectedNews.attachments.length > 0 && (
             <Box sx={{ mt: 3 }}>
               <Typography variant="subtitle2" gutterBottom>
                 Вложения:
@@ -49,11 +74,16 @@ export const NewsModal = ({ handleCloseModal, selectedNews }) => {
   );
 
   function renderCardMedia() {
-    if (!selectedNews.attachments) return null;
-    const { photo } = selectedNews.attachments[0];
+    if (!selectedNews?.attachments) return null;
+    const firstAttachment = selectedNews.attachments[0];
+    if (!firstAttachment?.photo) return null;
+
+    const { photo } = firstAttachment;
     if (!photo) return null;
     const { sizes } = photo;
-    const rightSize = sizes.find((el) => el.type === "r");
+    const rightSize = sizes.find((el: AttachmentSize) => el.type === "r");
+
+    if (!rightSize) return null; // Handle case where 'r' size is not found
 
     return (
       <CardMedia

@@ -6,8 +6,8 @@ import {
 } from "../../shared/ui/form-factory/form-factory";
 import style from "./style.module.scss";
 import * as yup from "yup";
-import { Typography } from "@mui/material";
-import { useNavigate } from "react-router";
+import { Typography, Paper, Box, Link as MuiLink } from "@mui/material";
+import { useNavigate, Link } from "react-router-dom";
 import { AppRoutes } from "../../shared/lib/router";
 
 type FormValues = {
@@ -50,16 +50,34 @@ export const Login = () => {
     navigate(AppRoutes.NEWS);
   };
   return (
-    <div className={style.container}>
-      <div className={style.container_auth}>
-        <Typography>Вход в систему</Typography>
-        <p></p>
+    <Box
+      className={style.container}
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        minHeight: "100vh", 
+      }}
+    >
+      <Paper elevation={3} sx={{ padding: 4, borderRadius: 2, minWidth: 300, textAlign: 'center' }}>
+        <Typography variant="h5" component="h1" gutterBottom>
+          Вход в систему
+        </Typography>
         <FormFactory<FormValues>
           fields={fields}
           validationSchema={validationSchema}
           onSubmit={handleSubmit}
         />
-      </div>
-    </div>
+        <Box mt={2}>
+          <Typography variant="body2">
+            Нет аккаунта?{' '}
+            <MuiLink component={Link} to={AppRoutes.REGISTRATION}>
+              Пройдите регистрацию
+            </MuiLink>
+          </Typography>
+        </Box>
+      </Paper>
+    </Box>
   );
 };

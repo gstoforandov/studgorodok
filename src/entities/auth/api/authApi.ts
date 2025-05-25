@@ -17,6 +17,18 @@ export const authSlice = createApi({
         method: 'POST',
         body,
       })
+    }),
+    whoami: builder.query({
+      query: () => {
+        const token = localStorage.getItem('token');
+        return {
+          url: '/auth/whoami',
+          method: 'GET',
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        };
+      },
     })
   })
 })
@@ -24,4 +36,5 @@ export const authSlice = createApi({
 export const {
   useLoginMutation,
   useRegistrationMutation,
+  useWhoamiQuery,
 } = authSlice

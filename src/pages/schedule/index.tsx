@@ -73,11 +73,6 @@ export const Schedule = () => {
         {isLoading && (
           <CircularProgress sx={{ display: "block", margin: "20px auto" }} />
         )}
-        {error && (
-          <Typography color="error">
-            Ошибка загрузки: {error.message}
-          </Typography>
-        )}
         {!selectedGroup && (
           <Typography sx={{ mt: 2 }} color="text.secondary">
             Пожалуйста, выберите группу для отображения расписания

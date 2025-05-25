@@ -1,23 +1,29 @@
 import { createBrowserRouter } from "react-router";
 import { AppRoutes, RouteComponents } from "./routes";
+import { ProtectedRoute } from "./ProtectedRoute";
 
 const appRouter = () =>
   createBrowserRouter([
     {
-      path: AppRoutes.ROOT,
-      element: RouteComponents[AppRoutes.ROOT],
+      element: <ProtectedRoute />,
       children: [
         {
-          path: AppRoutes.NEWS,
-          element: RouteComponents[AppRoutes.NEWS],
-        },
-        {
-          path: AppRoutes.SCHEDULE,
-          element: RouteComponents[AppRoutes.SCHEDULE],
-        },
-        {
-          path: AppRoutes.CANTEEN,
-          element: RouteComponents[AppRoutes.CANTEEN],
+          path: AppRoutes.ROOT,
+          element: RouteComponents[AppRoutes.ROOT],
+          children: [
+            {
+              path: AppRoutes.NEWS,
+              element: RouteComponents[AppRoutes.NEWS],
+            },
+            {
+              path: AppRoutes.SCHEDULE,
+              element: RouteComponents[AppRoutes.SCHEDULE],
+            },
+            {
+              path: AppRoutes.CANTEEN,
+              element: RouteComponents[AppRoutes.CANTEEN],
+            },
+          ],
         },
       ],
     },
